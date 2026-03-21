@@ -1,1 +1,1 @@
-https://github.com/shreydan/VisionGPT2?tab=readme-ov-file
+https://github.com/othmanesebban/Hybrid-vision-language-captioning-models-using-vision-transformers/tree/master
