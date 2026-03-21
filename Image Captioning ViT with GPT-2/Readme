@@ -5,9 +5,6 @@ This project implements an **Image Captioning System** using:
 - Vision Transformer (**ViT**) as the encoder
 - GPT-2 as the decoder
 
-Built with Hugging Face Transformers, PyTorch, and supports live training visualization via **TensorBoard**.
-
----
 
 ## ⚡ Features
 
@@ -36,27 +33,6 @@ Built with Hugging Face Transformers, PyTorch, and supports live training visual
     └── checkpoint-*/                         # Training checkpoints
 ```
 
----
-
-## 🚀 Getting Started
-
-### 1. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-or manually:
-
-```bash
-pip install torch torchvision transformers evaluate datasets pandas matplotlib tensorboard
-```
-
-### 2. Prepare the dataset
-
-- CSV format: `image | comment_number | caption`
-- Images must be inside the `flickr30k_images/` directory
-
 ### 3. Run the training
 
 ```bash
@@ -69,15 +45,13 @@ python vit-base-patch16-224-in21k_gpt2.py
 tensorboard --logdir=vit-base-patch16-224-in21k_gpt2/logs
 ```
 
-Then open: [http://localhost:6006](http://localhost:6006)
 
 ---
 
 ## 📊 Output Metrics
 
 - Training loss / Validation loss per epoch
-- ROUGE-2 (Precision, Recall, F1)
-- Saved under `training_metrics.png` and `TensorBoard logs`
+- BLUE , CIDEr, METOEr, ROUGE-l
 
 ---
 
@@ -87,30 +61,7 @@ Automatically resumes from the latest checkpoint (e.g., `checkpoint-300`) if exi
 
 ---
 
-## 📷 Example Inference
 
-Generates captions from sample images after training.
 
----
-
-## 🚜 Credits
-
-- [Hugging Face Transformers](https://github.com/huggingface/transformers)
-- [Google ViT model](https://huggingface.co/google/vit-base-patch16-224-in21k)
-- [OpenAI GPT-2](https://huggingface.co/gpt2)
-
----
-
-## 🌟 TODO
-
-- Add BLEU/CIDEr metrics
-- Support HF Hub push
-- Add image preprocessing CLI
-- Add custom UI for caption viewing
-
----
-
-## ✅ License
-
-MIT License.
+--------------------------------------------------------- the creator is othmane sebban -----------------------------
 
