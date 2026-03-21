@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Comparaison entre l'architecture ViT standard et l'architecture ViT + GPT-2 pour le captioning d'image}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Élément} & \textbf{ViT standard (Image 1)} & \textbf{ViT + GPT-2 Captioning (Image 2)} \\
+\hline
+\textbf{📍 Tâche} & Classification d’image & Légendage automatique \\
+\hline
+\textbf{🎯 Output} & Classe (label) & Texte (phrase) \\
+\hline
+\textbf{🧠 Composants} & ViT uniquement & ViT + GPT-2 (2 modèles connectés) \\
+\hline
+\textbf{↔ Modalité} & Vision uniquement & Vision + Langage \\
+\hline
+\textbf{🔄 Interaction image/texte} & Aucune & Cross-attention image $\rightarrow$ texte \\
+\hline
+\end{tabular}
+\label{tab:vit_vs_gpt2}
+\end{table}

@@ -1,0 +1,116 @@
+# 🖼️ Image Captioning with ViT-GPT2
+
+This project implements an **Image Captioning System** using:
+
+- Vision Transformer (**ViT**) as the encoder
+- GPT-2 as the decoder
+
+Built with Hugging Face Transformers, PyTorch, and supports live training visualization via **TensorBoard**.
+
+---
+
+## ⚡ Features
+
+- Encoder: `google/vit-base-patch16-224-in21k`
+- Decoder: `gpt2`
+- Caption generation with beam search
+- Supports **training resumption from latest checkpoint**
+- Logs all metrics to **TensorBoard**
+- Saves:
+  - loss plots (`training_metrics.png`)
+  - generated captions (`generated_captions.txt`)
+- Auto-launches TensorBoard in browser
+
+---
+
+## 📁 Project Structure
+
+```bash
+├── vit-base-patch16-224-in21k_gpt2.py        # Main script (training + inference)
+├── results.csv                                # Dataset (image | comment_number | caption)
+├── flickr30k_images/                          # Image directory
+├── training_metrics.png                       # Saved loss/ROUGE2 curves
+├── generated_captions.txt                     # Output predictions
+└── vit-base-patch16-224-in21k_gpt2/
+    ├── logs/                                  # TensorBoard logs
+    └── checkpoint-*/                         # Training checkpoints
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+or manually:
+
+```bash
+pip install torch torchvision transformers evaluate datasets pandas matplotlib tensorboard
+```
+
+### 2. Prepare the dataset
+
+- CSV format: `image | comment_number | caption`
+- Images must be inside the `flickr30k_images/` directory
+
+### 3. Run the training
+
+```bash
+python vit-base-patch16-224-in21k_gpt2.py
+```
+
+### 4. View live metrics
+
+```bash
+tensorboard --logdir=vit-base-patch16-224-in21k_gpt2/logs
+```
+
+Then open: [http://localhost:6006](http://localhost:6006)
+
+---
+
+## 📊 Output Metrics
+
+- Training loss / Validation loss per epoch
+- ROUGE-2 (Precision, Recall, F1)
+- Saved under `training_metrics.png` and `TensorBoard logs`
+
+---
+
+## 🔄 Resume Training
+
+Automatically resumes from the latest checkpoint (e.g., `checkpoint-300`) if exists.
+
+---
+
+## 📷 Example Inference
+
+Generates captions from sample images after training.
+
+---
+
+## 🚜 Credits
+
+- [Hugging Face Transformers](https://github.com/huggingface/transformers)
+- [Google ViT model](https://huggingface.co/google/vit-base-patch16-224-in21k)
+- [OpenAI GPT-2](https://huggingface.co/gpt2)
+
+---
+
+## 🌟 TODO
+
+- Add BLEU/CIDEr metrics
+- Support HF Hub push
+- Add image preprocessing CLI
+- Add custom UI for caption viewing
+
+---
+
+## ✅ License
+
+MIT License.
+

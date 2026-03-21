@@ -1,0 +1,63 @@
+# Rapport technique : Génération de légendes d’images avec ViT + GPT-2
+
+## 1. Introduction
+Ce rapport présente une méthode de génération automatique de légendes pour des images en utilisant une architecture à deux composantes :
+- **Vision Transformer (ViT)** pour l’encodage d’images
+- **GPT-2** pour la génération de texte
+
+La méthode implémentée correspond à l’architecture dite **CLIP-GPT2** (ou ViT2GPT) et suit les standards des bibliothèques de HuggingFace Transformers.
+
+---
+
+## 2. Architecture de la solution
+
+### a. ViT : Vision Transformer (Encodeur image)
+L'image est d'abord redimensionnée (640x640) puis divisée en petits patchs. Ces patchs sont transformés en vecteurs grâce à :
+- Une projection linéaire des patchs
+- Un ajout d'encodages positionnels
+- Un passe à travers un Transformer Encoder
+
+**Référence schéma :** `Architecture of ViT.png`
+
+### b. GPT-2 : Générateur de texte (Décodeur)
+Après encodage, les vecteurs sont passés au décodeur GPT-2, qui utilise :
+- Attention masquée multi-tête
+- Normalisation par couche
+- Couches feed-forward
+
+Cela permet la prédiction séquentielle des mots d’une légende.
+
+**Référence schéma :** `decoder GPT-2.png`
+
+### c. Système complet : ViT → GPT-2
+Le pipeline complet se résume ainsi :
+1. Image → Feature Extractor ViT
+2. ViT embeddings → VisionEncoderDecoderModel
+3. VisionEncoderDecoderModel → GPT-2 → texte
+
+**Référence schéma :** `systéme generale.png`
+
+---
+
+## 3. Implémentation Python
+L’implémentation suit exactement l’architecture ci-dessus. Les grandes étapes sont :
+
+### a. Prétraitement
+- Chargement de `Flickr30k`
+- Redimensionnement images (640x640)
+- Transformation en tenseurs et tokenisation des légendes
+
+### b. Entraînement
+- Modèle : `VisionEncoderDecoderModel(ViT, GPT2)`
+- Métrique : `ROUGE-2`
+- Batch training, early stopping, beam search, etc.
+
+### c. Évaluation et génération
+- Affichage des courbes `Loss`, `ROUGE-2`
+- Génération de légendes pour des images test
+
+---
+
+## 4. Conclusion
+Ce projet implémente fidèlement un modèle d’image captioning fondé sur ViT + GPT-2. Les schémas fournis permettent de visualiser clairement chaque étape du processus. Ce pipeline peut être adapté à d’autres jeux de données et d’autres décodeurs pour divers cas d’usage.
+
