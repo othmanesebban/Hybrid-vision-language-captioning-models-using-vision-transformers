@@ -57,3 +57,10 @@ Hybrid-vision-language-captioning-models-using-vision-transformers/
 │   └── model implementation
 │
 └── README.md
+
+## Model Checkpoints
+
+The trained model checkpoints are not stored directly in this GitHub repository because of their large file size. The experiments can be reproduced using the provided training scripts and configuration files together with the publicly available pretrained models:
+- "google/vit-base-patch16-224-in21k"
+- "gpt2"
+When available, archived trained checkpoints are provided through the project's external archival repository.
